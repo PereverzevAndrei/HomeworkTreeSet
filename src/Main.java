@@ -1,10 +1,22 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         List<Person> dvoriane = new ArrayList<>(generateClients());
-        dvoriane.sort(new ComparePersons());
+        Comparator<Person> comparator = (o1, o2) -> {
+            int surnameFirst = o1.getSurname().split("\\P{IsAlphabetic}+").length;
+            int surnameSecond = o2.getSurname().split("\\P{IsAlphabetic}+").length;
+            if (surnameFirst > surnameSecond) {
+                return -1;
+            } else if (surnameFirst < surnameSecond) {
+                return 1;
+            } else {
+                return Integer.compare(o1.getAge(), o2.getAge());
+            }
+        };
+        dvoriane.sort(comparator);
         System.out.println(dvoriane);
     }
 
