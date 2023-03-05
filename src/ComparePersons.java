@@ -1,4 +1,7 @@
 import java.util.Comparator;
+import java.util.function.Predicate;
+
+import java.util.List;
 
 public class ComparePersons implements Comparator<Person> {
 
@@ -15,4 +18,5 @@ public class ComparePersons implements Comparator<Person> {
             return Integer.compare(o1.getAge(), o2.getAge());
         }
     }
+
 }
